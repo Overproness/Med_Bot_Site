@@ -1,13 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const cors = require("cors");
+const cors = require("cors"); // Uncomment this line
 const dotenv = require("dotenv");
 const router = require("./routes"); // Import the router
 
 dotenv.config();
 const app = express();
 
-// app.use(cors());
+// Enable CORS for all origins
+app.use(
+  cors({
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow all methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
+  })
+);
 app.use(express.json());
 
 mongoose
