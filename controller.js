@@ -1,5 +1,5 @@
 // controller.js
-import PatientVitals from "./model.js";
+const PatientVitals = require("./model.js");
 
 // Save patient vitals data
 const savePatientVitals = async (req, res) => {

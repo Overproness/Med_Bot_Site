@@ -1,5 +1,5 @@
 // model.js
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const patientVitalsSchema = new mongoose.Schema({
   patient_id: { type: String, required: true }, // Unique patient identifier
@@ -14,6 +14,4 @@ const patientVitalsSchema = new mongoose.Schema({
 });
 
 // Create the model
-const PatientVitals = mongoose.model("PatientVitals", patientVitalsSchema);
-
-export default PatientVitals;
+module.exports = mongoose.model('PatientVitals', patientVitalsSchema);

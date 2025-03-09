@@ -1,6 +1,6 @@
 // routes.js
-import express from "express";
-import { savePatientVitals, getPatientVitals } from "./controller.js";
+const express = require("express");
+const { savePatientVitals, getPatientVitals, getAllPatientsVitals} = require("./controller.js");
 
 const router = express.Router();
 
@@ -12,4 +12,4 @@ router.get("/vitals/:patient_id", getPatientVitals);
 
 // Route to retrieve vitals for all patients (GET request)
 router.get("/vitals", getAllPatientsVitals);
-export default router;
+module.exports = router;
