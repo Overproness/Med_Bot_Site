@@ -6,7 +6,10 @@ export const fetchVitalsData = async () => {
     const response = await axios.get(
       "https://med-bot-site.onrender.com/vitals"
     );
-    return response.data.data;
+    if (response) {
+      if (response.data.data) return response.data.data;
+      else if (response.data) return response.data;
+    }
   } catch (error) {
     console.error("Error fetching vitals data:", error);
     throw error;
