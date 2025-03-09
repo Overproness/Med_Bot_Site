@@ -10,17 +10,17 @@ import {
 } from "chart.js";
 
 // Register Chart.js components
-export const registerChartComponents = () => {
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-  );
-};
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+// export const aregisterChartComponents = () => {
+// };
 
 // Chart options configuration
 export const getChartOptions = () => {

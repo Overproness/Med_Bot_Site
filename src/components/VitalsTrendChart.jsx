@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
 import {
-  registerChartComponents,
+  // aregisterChartComponents,
   getChartOptions,
   prepareChartData,
 } from "../config/chartConfig";
 
 export const VitalsTrendChart = ({ data }) => {
-  useEffect(() => {
-    // Register Chart.js components when component mounts
-    registerChartComponents();
-  }, []);
+  // useEffect(() => {
+  //   // Register Chart.js components when component mounts
+  //   aregisterChartComponents();
+  // }, []);
 
   const chartData = prepareChartData(data);
   const chartOptions = getChartOptions();
