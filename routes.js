@@ -1,14 +1,18 @@
 // routes.js
 const express = require("express");
-const { savePatientVitals, getPatientVitals, getAllPatientsVitals} = require("./controller.js");
+const {
+  savePatientVitals,
+  getPatientVitals,
+  getAllPatientsVitals,
+} = require("./controller.js");
 
 const router = express.Router();
 
 // Route to save patient vitals (POST request)
 router.post("/vitals", savePatientVitals);
 
-// Route to retrieve patient vitals by patient_id (GET request)
-router.get("/vitals/:patient_id", getPatientVitals);
+// Route to retrieve patient vitals by patient_name (GET request)
+router.get("/vitals/:patient_name", getPatientVitals);
 
 // Route to retrieve vitals for all patients (GET request)
 router.get("/vitals", getAllPatientsVitals);
