@@ -85,7 +85,7 @@ export const prepareChartData = (filteredData) => {
     datasets: [
       {
         label: "Heart Rate (bpm)",
-        data: filteredData.map((vital) => vital.heart_rate),
+        data: filteredData.map((vital) => vital.heart_rate || null),
         borderColor: "#FF5733",
         backgroundColor: "rgba(255, 87, 51, 0.2)",
         fill: true,
@@ -93,7 +93,7 @@ export const prepareChartData = (filteredData) => {
       },
       {
         label: "Temperature (°C)",
-        data: filteredData.map((vital) => vital.temperature),
+        data: filteredData.map((vital) => vital.temperature || null),
         borderColor: "#33B5FF",
         backgroundColor: "rgba(51, 181, 255, 0.2)",
         fill: true,
@@ -101,7 +101,7 @@ export const prepareChartData = (filteredData) => {
       },
       {
         label: "Oxygen Saturation (%)",
-        data: filteredData.map((vital) => vital.oxygen_saturation),
+        data: filteredData.map((vital) => vital.oxygen_saturation || null),
         borderColor: "#8BC34A",
         backgroundColor: "rgba(139, 195, 74, 0.2)",
         fill: true,

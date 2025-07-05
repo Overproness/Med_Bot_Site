@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchVitalsData } from "./api/vitalService";
 import { AlertsSection } from "./components/AlertsSection";
 import { LastUpdated } from "./components/LastUpdated";
@@ -6,14 +6,13 @@ import { SearchComponent } from "./components/SearchComponent";
 import { TabNavigation } from "./components/TabNavigation";
 import { VitalsTable } from "./components/VitalsTable";
 import { VitalsTrendChart } from "./components/VitalsTrendChart";
-import { checkForCriticalConditions } from "./utils/vitalHelpers";
 import "./styles/tailwind.css";
+import { checkForCriticalConditions } from "./utils/vitalHelpers";
 
 const App = () => {
   const [vitalsData, setVitalsData] = useState([]);
   const [criticalAlerts, setCriticalAlerts] = useState([]);
   const [latestUpdate, setLatestUpdate] = useState("");
-  const [selectedPatient, setSelectedPatient] = useState(null);
   const [activeTab, setActiveTab] = useState("allPatients"); // Default tab
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -40,23 +39,31 @@ const App = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // Get unique patient IDs for filtering
-  const patientIds = [...new Set(vitalsData.map((vital) => vital.patient_id))];
+  // Get unique patient names for filtering (for future use)
+  const _PATIENT_NAMES = [
+    ...new Set(
+      vitalsData.map(
+        (vital) => vital.patient_name || `Patient ${vital.patient_id}`
+      )
+    ),
+  ];
 
-  // Filter data for selected patient or show all
-  const filteredData = selectedPatient
-    ? vitalsData.filter((vital) => vital.patient_id === selectedPatient)
-    : vitalsData;
+  // Filter data for all patients (no individual patient filtering for now)
+  const filteredData = vitalsData;
 
   // Filter data based on search term
   const searchFilteredData = searchTerm
     ? vitalsData.filter(
         (vital) =>
-          vital.patient_id.toString().includes(searchTerm) ||
-          vital.heart_rate.toString().includes(searchTerm) ||
-          vital.temperature.toString().includes(searchTerm) ||
-          vital.oxygen_saturation.toString().includes(searchTerm) ||
-          vital.blood_pressure.includes(searchTerm)
+          (vital.patient_name || `Patient ${vital.patient_id}`)
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          (vital.heart_rate &&
+            vital.heart_rate.toString().includes(searchTerm)) ||
+          (vital.temperature &&
+            vital.temperature.toString().includes(searchTerm)) ||
+          (vital.oxygen_saturation &&
+            vital.oxygen_saturation.toString().includes(searchTerm))
       )
     : vitalsData;
 

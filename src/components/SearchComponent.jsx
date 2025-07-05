@@ -1,4 +1,3 @@
-import React from "react";
 import { Search } from "lucide-react";
 
 export const SearchComponent = ({ searchTerm, setSearchTerm }) => (
@@ -11,7 +10,7 @@ export const SearchComponent = ({ searchTerm, setSearchTerm }) => (
       <input
         type="text"
         className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Search by patient ID, vital signs..."
+        placeholder="Search by patient name, heart rate, temperature, oxygen saturation..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
